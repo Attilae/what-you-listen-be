@@ -33,16 +33,6 @@ function initial() {
 			});
 
 			new Role({
-				name: 'moderator',
-			}).save((err) => {
-				if (err) {
-					console.log('error', err);
-				}
-
-				console.log("added 'moderator' to roles collection");
-			});
-
-			new Role({
 				name: 'admin',
 			}).save((err) => {
 				if (err) {
@@ -56,10 +46,13 @@ function initial() {
 }
 
 db.mongoose
-	.connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	})
+	.connect(
+		`mongodb+srv://${dbConfig.USERNAME}:${dbConfig.PWD}@${dbConfig.HOST}`,
+		{
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+		}
+	)
 	.then(() => {
 		console.log('Successfully connect to MongoDB.');
 		initial();
@@ -73,6 +66,10 @@ db.mongoose
 app.get('/', (req, res) => {
 	res.json({message: 'Welcome to bezkoder application.'});
 });
+
+// routes
+require('./app/routes/auth.routes')(app);
+require('./app/routes/user.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
