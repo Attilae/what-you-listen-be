@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dbConfig = require('./app/config/db.config.js');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -12,6 +13,8 @@ app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
 app.use(express.json());
+
+app.use(cookieParser());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({extended: true}));
@@ -64,12 +67,13 @@ db.mongoose
 
 // simple route
 app.get('/', (req, res) => {
-	res.json({message: 'Welcome to bezkoder application.'});
+	res.json({message: 'Welcome to the application.'});
 });
 
 // routes
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
+require('./app/routes/spotify.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

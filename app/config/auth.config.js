@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
-	secret: 'attilae-secret-key',
+	secret: process.env.SECRET_KEY,
 };

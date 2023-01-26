@@ -1,7 +1,9 @@
+require('dotenv').config();
+
 module.exports = {
-	USERNAME: 'Attilae',
-	PWD: 'mHloDS4CSQ2XHrVS',
-	HOST: 'cluster0.jvagztz.mongodb.net/?retryWrites=true&w=majority',
+	USERNAME: process.env.DB_USER,
+	PWD: process.env.DB_PASS,
+	HOST: process.env.DB_HOST,
 	PORT: 27017,
-	DB: 'kisa_db',
+	DB: process.env.DB_DB,
 };
