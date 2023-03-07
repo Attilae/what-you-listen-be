@@ -9,9 +9,11 @@ jobs:
     - uses: actions/checkout@v2.1.0
       with:
         fetch-depth: 2
-    - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        ftp-server: ftp://cl20.webspacecontrol.com:21/public_html
-        ftp-username: github@erdeiattila.com
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
+         server: ${{ secrets.FTP_SERVER }}
+         username: ${{ secrets.FTP_USERNAME }}
+         password: ${{ secrets.FTP_PASSWORD }}
+         protocol: ftps
+         port: 1234
