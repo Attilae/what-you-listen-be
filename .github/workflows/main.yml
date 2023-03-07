@@ -2,6 +2,7 @@ on: push
 name: Publish Website
 jobs:
   FTP-Deploy-Action:
+    environment: dev
     name: FTP-Deploy-Action
     runs-on: ubuntu-latest
     steps:
